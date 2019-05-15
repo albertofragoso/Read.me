@@ -73,7 +73,7 @@ class MyProvider extends Component{
 
   render() {
     return(
-      <Mycontext.Povider value={{
+      <Mycontext.Provider value={{
         form: this.state.form,
         handelInput: this.handelInput,
         handleSignup: this.handleSignup,
@@ -81,7 +81,7 @@ class MyProvider extends Component{
         handleLogout: this.handleLogout
       }}>
         {this.props.children}
-      </Mycontext.Povider>
+      </Mycontext.Provider>
     )
   }
 }

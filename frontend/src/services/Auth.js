@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { runInThisContext } from 'vm';
 
 const baseURL = 'http://localhost:3000/'
 
@@ -37,10 +36,7 @@ class AuthService {
       .get('/auth/loggedin')
       .then(response => response)
       .catch(err => err)
-      
-    }
   }
-
 }
 
 export default AuthService
