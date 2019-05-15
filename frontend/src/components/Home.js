@@ -1,5 +1,7 @@
 import React from "react";
-import {  MDBMask, MDBRow, MDBCol,  MDBBtn, MDBView, MDBContainer } from "mdbreact";
+import {  MDBMask, MDBRow, MDBCol,  MDBView, MDBContainer } from "mdbreact";
+import ModalSignup from "./ModalSignup";
+import ModalLogin from "./ModalLogin";
 
 const Home = () => (
   <>
@@ -9,13 +11,13 @@ const Home = () => (
           <MDBRow>
             <MDBCol md="12" className="mb-4 white-text text-center">
               <div className="d-flex justify-content-center align-items-center">
-                <h1 class="display-3 mb-0 mr-3 pt-md-5 pt-5 white-text font-weight-bold" >READ.<span className="secondary-color-dark-text font-weight-bold">ME </span> </h1>
+                <h1 className="display-3 mb-0 mr-3 pt-md-5 pt-5 white-text font-weight-bold" >READ.<span className="secondary-color-dark-text font-weight-bold">ME </span> </h1>
                 <img style={{paddingTop: '20px'}} src="rocket.png" alt="readme" width="90"/> 
               </div>
               <hr className="hr-light my-4" />
               <h5 className="pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 white-text font-weight-bold">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti consequuntur nihil.</h5>
-              <MDBBtn style={{borderRadius: "30px"}} active gradient="purple" size="lg" rounded>Sign up</MDBBtn>
-              <MDBBtn style={{borderRadius: "30px"}} outline color="secondary" size="lg">Log in</MDBBtn>
+              <ModalSignup />
+              <ModalLogin />
             </MDBCol>
           </MDBRow>
         </MDBContainer>

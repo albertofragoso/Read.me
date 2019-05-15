@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBContainer, MDBFormInline } from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBCollapse, MDBContainer } from "mdbreact";
 
 class Navbar extends Component {
   state = {
@@ -35,7 +35,7 @@ class Navbar extends Component {
               <MDBNavbarBrand>
                 <div className="d-flex justify-content-center align-items-center">
                   <img src="rocket.png" alt="readme" width="40"/> 
-                  <h4 style={{paddingTop:'20px'}} class="ml-2 white-text font-weight-bold" > READ.ME </h4>
+                  <h4 style={{paddingTop:'20px'}} className="ml-2 white-text font-weight-bold" > READ.ME </h4>
                 </div>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={this.handleTogglerClick} />

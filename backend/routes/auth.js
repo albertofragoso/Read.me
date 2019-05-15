@@ -7,11 +7,15 @@ router.post('/signup', (req, res, next) => {
   User.register(req.body, req.body.password)
     .then(user => {
       passport.authenticate('local', (err, user, info) => {
-        if(err) return res.status(500).json(err)
-        if(!user) return res.status(401).json({ msg: 'Unauthorized'})
+        if(err) return res.status(500).json({ err, infoErr })
+        if(!user) return res.status(401).json({ msg: "This user doesn't exist"})
         req.logIn(user, err => {
-          if(err) return res.status(401).json(err)
-          return res.status(200).json(user)
+          if(err) return res.status(500).json(err)
+          res.status(200).json({ 
+            email: user.email,
+            name: user.name,
+            photo: user.photo
+          })
         })
       })(req, res, next)
     })
@@ -20,20 +24,22 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    if(err) return res.status(500).json(err)
-    if(!user) return res.status(401).json({ msg: 'Unauthorized'})
+    if(err) return res.status(500).json({ err, infoErr })
+    if(!user) return res.status(401).json({ msg: "This user doesn't exist"})
     req.logIn(user, err => {
-      if(err) return res.status(401).json(err)
-      return res.status(200).json(user)
+      if(err) return res.status(500).json(err)
+      res.status(200).json({ 
+        email: user.email,
+        name: user.name,
+        photo: user.photo
+      })
     })
   })(req, res, next)
 })
 
 router.get('/logout', (req, res, next) => {
   req.logOut()
-  req.session.destroy(err => {
-    if(!err) res.status(200)
-  })
+  req.status(200).json({ msg: 'logout backend'})
 })
 
 router.get('/profile', isLogged, (req, res, next) => {

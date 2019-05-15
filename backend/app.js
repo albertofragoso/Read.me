@@ -57,8 +57,8 @@ app.use(
   session({
     secret: process.env.SECRET, 
     resave: true,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+    saveUninitialized: true,
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
   })
 )
 
@@ -69,9 +69,9 @@ app.use(passport.session())
 // default value for title local
 app.locals.title = 'Read.me';
 
-
-
 const index = require('./routes/index');
+const auth = require('./routes/auth')
+app.use('/auth', auth)
 app.use('/', index);
 
 
