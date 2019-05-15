@@ -11,14 +11,15 @@ class MyProvider extends Component{
   state = {
     form: {
       email: '',
+      name: '',
       password: '',
       photo: ''
     }
   }
 
-  handelInput = e => {
+  handleInput = e => {
     const { form } = this.state
-    form[e.target.name] = e.taget.value
+    form[e.target.name] = e.target.value
     this.setState(form)
   }
 
@@ -26,22 +27,29 @@ class MyProvider extends Component{
     service
       .signup(this.state.form)
       .then(response => {
-        toastr.success('¡Super! te has registrado con éxito. 👍🏻')
-        window.localStorage.setItem('loggedUser', JSON.stringify(response.data))
+        if(response.err) return toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣')
+        toastr.success('¡Súper! Te has registrado con éxito. 👍🏻')
+        this.setState({
+          form: {
+            email: '',
+            name: '',
+            password: '',
+            photo: ''   
+          }
+        })
       })
-      .catch(err => toastr.error('Bu. Algo salió mal. 😣'))
+      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
   handleLogin = e => {
     service
       .login(this.state.form)
       .then(response => {
-        if(response.err) return toastr.error(`${response.err}. 😣`)
-        window.localStorage.setItem('loggeduser', JSON.stringify(response.data))
-        toastr.success('¡Nice! te has logeado con éxito. 👍🏻')
-        //history.push('/')
+        if(response.err) return toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣')
+        window.localStorage.setItem('logged',JSON.stringify(response.data))
+        history.push('/profile')
       })
-      .catch(err => toastr.error('Bu. Algo salió mal. 😣'))
+      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
   handleLogout = e => {
@@ -49,10 +57,10 @@ class MyProvider extends Component{
       .logout()
       .then(response => {
         window.localStorage.clear()
-        toastr.success('Regresa pronto. 🙂')
-        //history.push('/')
+        toastr.info('Regresa pronto. 🙂')
+        history.push('/')
       })
-      .catch(err => toastr.error(`${err}. 😣`))
+      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
   // handleImageUpload = async e => {
@@ -75,7 +83,7 @@ class MyProvider extends Component{
     return(
       <Mycontext.Provider value={{
         form: this.state.form,
-        handelInput: this.handelInput,
+        handleInput: this.handleInput,
         handleSignup: this.handleSignup,
         handleLogin: this.handleLogin,
         handleLogout: this.handleLogout

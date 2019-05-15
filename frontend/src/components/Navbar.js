@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBCollapse, MDBContainer } from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBCollapse, MDBContainer, MDBNavbarNav, MDBNavItem, MDBNavLink } from "mdbreact";
+import AuthService from '../services/Auth'
+import toastr from 'toastr'
+import history from '../components/history'
+
+const service = new AuthService()
 
 class Navbar extends Component {
   state = {
@@ -12,14 +17,28 @@ class Navbar extends Component {
     });
   };
 
+  handleLogout = e => {
+    service
+      .logout()
+      .then(response => {
+        window.localStorage.clear()
+        toastr.info('Regresa pronto. 🙂')
+        history.push('/')
+      })
+      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
+  }
+
   render() {
+    const user = localStorage.getItem('logged')
+
     const overlay = (
       <div
         id="sidenav-overlay"
         style={{ backgroundColor: "transparent" }}
         onClick={this.handleTogglerClick}
       />
-    );
+    )
+    
     return (
       <>
         <div>
@@ -39,33 +58,18 @@ class Navbar extends Component {
                 </div>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={this.handleTogglerClick} />
-              <MDBCollapse isOpen={this.state.collapsed} navbar>
-                {/* <MDBNavbarNav left>
+              { user &&
+                <MDBCollapse isOpen={this.state.collapsed} navbar>
+                <MDBNavbarNav right>
                   <MDBNavItem active>
-                    <MDBNavLink to="#!">Home</MDBNavLink>
+                    <MDBNavLink to="#!">{JSON.parse(user).name}</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#!">Link</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#!">Profile</MDBNavLink>
+                    <MDBNavLink to="#" onClick={this.handleLogout}>Logout</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
-                <MDBNavbarNav right>
-                  <MDBNavItem>
-                    <MDBFormInline waves>
-                      <div className="md-form my-0">
-                        <input
-                          className="form-control mr-sm-2"
-                          type="text"
-                          placeholder="Search"
-                          aria-label="Search"
-                        />
-                      </div>
-                    </MDBFormInline>
-                  </MDBNavItem>
-                </MDBNavbarNav> */}
-              </MDBCollapse>
+                </MDBCollapse>
+              } 
             </MDBContainer>
           </MDBNavbar>
           {this.state.collapsed && overlay}

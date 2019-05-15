@@ -11,7 +11,7 @@ const RouterComponent = () => (
       <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='/user' component={() => <p>User</p>} />
+        <Route exact path='/profile' component={() => <p>User</p>} />
         <Route exact path='/books' component={() => <p>Books</p>} />
         <Route exact path='/books/:id' component={() => <p>Book</p>} />
         <Route component={() => <p>404</p>} />
