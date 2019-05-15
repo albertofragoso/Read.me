@@ -10,11 +10,12 @@ const userSchema = new Schema({
   },
   name: String,
   photo: String
-}, {
+}, 
+{
   timestamps: true,
   versionKey: false,
 })
 
-userSchema.plugin(PLM, { usernameFiled: 'email' })
+userSchema.plugin(PLM, { usernameField: 'email' })
 
 module.exports = mongoose.model('User', userSchema)

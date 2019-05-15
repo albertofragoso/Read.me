@@ -8,7 +8,7 @@ router.post('/signup', (req, res, next) => {
     .then(user => {
       passport.authenticate('local', (err, user, info) => {
         if(err) return res.status(500).json({ err, infoErr })
-        if(!user) return res.status(401).json({ msg: "This user doesn't exist"})
+        if(!user) return res.status(401).json({ msg: "This user doesn't exist" })
         req.logIn(user, err => {
           if(err) return res.status(500).json(err)
           res.status(200).json({ 
