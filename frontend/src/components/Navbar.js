@@ -52,10 +52,12 @@ class Navbar extends Component {
           >
             <MDBContainer>
               <MDBNavbarBrand>
-                <div className="d-flex justify-content-center align-items-center">
-                  <img src="rocket.png" alt="readme" width="40"/> 
-                  <h4 style={{paddingTop:'20px'}} className="ml-2 white-text font-weight-bold" > READ.ME </h4>
-                </div>
+                <MDBNavLink to="/">
+                  <div className="d-flex justify-content-center align-items-center">
+                    <img src="rocket.png" alt="readme" width="40"/> 
+                    <h4 style={{paddingTop:'20px'}} className="ml-2 white-text font-weight-bold" > READ.ME </h4>
+                  </div>
+                </MDBNavLink>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={this.handleTogglerClick} />
               { user &&

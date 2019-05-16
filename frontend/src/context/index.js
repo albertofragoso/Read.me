@@ -52,17 +52,6 @@ class MyProvider extends Component{
       .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
-  handleLogout = e => {
-    service
-      .logout()
-      .then(response => {
-        window.localStorage.clear()
-        toastr.info('Regresa pronto. 🙂')
-        history.push('/')
-      })
-      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  }
-
   // handleImageUpload = async e => {
   //   const uploadData = new FormData()
   //   uploadData.append('file', e.target.files[0])
