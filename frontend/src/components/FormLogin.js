@@ -23,7 +23,6 @@ const Formlogin = () => (
                   id="defaultFormCardEmailEx"
                   className="form-control"
                   name="email"
-                  value={form.email}
                   onChange={handleInput}
                   />
                 <br />
@@ -38,7 +37,6 @@ const Formlogin = () => (
                   id="defaultFormCardPasswordEx"
                   className="form-control"
                   name="password"
-                  value={form.password}
                   onChange={handleInput}
                   />
                 <div className="text-center py-4 mt-3">

@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarToggler, MDBCollapse, MDBContainer, MDBNavbarNav, MDBNavItem, MDBNavLink } from "mdbreact";
-import AuthService from '../services/Auth'
-import toastr from 'toastr'
-import history from '../components/history'
-
-const service = new AuthService()
+import { Mycontext } from '../context'
 
 class Navbar extends Component {
   state = {
@@ -17,19 +13,8 @@ class Navbar extends Component {
     });
   };
 
-  handleLogout = e => {
-    service
-      .logout()
-      .then(response => {
-        window.localStorage.clear()
-        toastr.info('Regresa pronto. 🙂')
-        history.push('/')
-      })
-      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  }
-
   render() {
-    const user = localStorage.getItem('logged')
+    //const user = localStorage.getItem('logged')
 
     const overlay = (
       <div
@@ -40,43 +25,47 @@ class Navbar extends Component {
     )
     
     return (
-      <>
-        <div>
-          <MDBNavbar
-            color=" purple darken-3"
-            dark
-            expand="md"
-            fixed="top"
-            scrolling
-            transparent
-          >
-            <MDBContainer>
-              <MDBNavbarBrand>
-                <MDBNavLink to="/">
-                  <div className="d-flex justify-content-center align-items-center">
-                    <img src="rocket.png" alt="readme" width="40"/> 
-                    <h4 style={{paddingTop:'20px'}} className="ml-2 white-text font-weight-bold" > READ.ME </h4>
-                  </div>
-                </MDBNavLink>
-              </MDBNavbarBrand>
-              <MDBNavbarToggler onClick={this.handleTogglerClick} />
-              { user &&
-                <MDBCollapse isOpen={this.state.collapsed} navbar>
-                <MDBNavbarNav right>
-                  <MDBNavItem active>
-                    <MDBNavLink to="#!">{JSON.parse(user).name}</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#" onClick={this.handleLogout}>Logout</MDBNavLink>
-                  </MDBNavItem>
-                </MDBNavbarNav>
-                </MDBCollapse>
-              } 
-            </MDBContainer>
-          </MDBNavbar>
-          {this.state.collapsed && overlay}
-        </div>
-      </>
+      <Mycontext.Consumer>
+        {({ user, handleLogout })=>(
+          <>
+          <div>
+            <MDBNavbar
+              color=" purple darken-3"
+              dark
+              expand="md"
+              fixed="top"
+              scrolling
+              transparent
+            >
+              <MDBContainer>
+                <MDBNavbarBrand>
+                  <MDBNavLink to="/">
+                    <div className="d-flex justify-content-center align-items-center">
+                      <img src="rocket.png" alt="readme" width="40"/> 
+                      <h4 style={{paddingTop:'20px'}} className="ml-2 white-text font-weight-bold" > READ.ME </h4>
+                    </div>
+                  </MDBNavLink>
+                </MDBNavbarBrand>
+                <MDBNavbarToggler onClick={this.handleTogglerClick} />
+                { user &&
+                  <MDBCollapse isOpen={this.state.collapsed} navbar>
+                  <MDBNavbarNav right>
+                    <MDBNavItem active>
+                      <MDBNavLink to="/profile">{user.name}</MDBNavLink>
+                    </MDBNavItem>
+                    <MDBNavItem>
+                      <MDBNavLink to="#" onClick={handleLogout}>Logout</MDBNavLink>
+                    </MDBNavItem>
+                  </MDBNavbarNav>
+                  </MDBCollapse>
+                } 
+              </MDBContainer>
+            </MDBNavbar>
+            {this.state.collapsed && overlay}
+          </div>
+        </>
+        )}
+      </Mycontext.Consumer>
     );
   }
 }

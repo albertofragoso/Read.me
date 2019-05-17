@@ -5,7 +5,7 @@ import { Mycontext } from '../context'
 const FormSignup = () => (
   <Mycontext.Consumer>
     {
-      ({ handleInput, handleSignup, form }) => {
+      ({ handleInput, handleImage, handleSignup, form }) => {
         return (
           <MDBContainer>
             <MDBRow>
@@ -27,11 +27,33 @@ const FormSignup = () => (
                     onChange={handleInput}
                   />
                   <br />
+                  {form.photo && <img className="img-fluid z-depth-1 rounded-circle mx-auto d-block" src={form.photo}  alt={form.name} width='100'/>}
+                  <label
+                    htmlFor="defaultFormCardNameEx"
+                    className="grey-text font-weight-light"
+                  >
+                    Tu foto de perfil aca:
+                  </label>
+                  <div className="input-group">
+                    <div className="custom-file">
+                      <input
+                        type="file"
+                        className="custom-file-input"
+                        id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01"
+                        name="photo"
+                        onChange={handleImage}
+                      />
+                      <label className="custom-file-label" htmlFor="inputGroupFile01">
+                      </label>
+                    </div>
+                  </div>
+                  <br />
                   <label
                     htmlFor="defaultFormCardEmailEx"
                     className="grey-text font-weight-light"
                   >
-                    Tu correo acá
+                    Tu correo aquí
                   </label>
                   <input
                     type="email"
@@ -46,7 +68,7 @@ const FormSignup = () => (
                     htmlFor="defaultFormCardPasswordEx"
                     className="grey-text font-weight-light"
                   >
-                    Y tu password aquí.
+                    Y tu password acá.
                   </label>
                   <input
                     type="password"
