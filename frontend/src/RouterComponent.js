@@ -8,7 +8,6 @@ import Footer from './components/Footer'
 import Chatbot from './components/Chatbot'
 import { Mycontext } from './context'
 
-
 const RouterComponent = () => {
   return (
     <Mycontext.Consumer>

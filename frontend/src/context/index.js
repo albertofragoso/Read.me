@@ -1,13 +1,11 @@
 import React, { createContext, Component} from 'react'
 import AuthService from '../services/Auth'
-import BooksService from '../services/Books'
 import toastr from 'toastr'
 import history from '../components/history'
 
 export const Mycontext = createContext()
 
 const service = new AuthService()
-const serviceBooks = new BooksService()
 
 class MyProvider extends Component{
   state = {
