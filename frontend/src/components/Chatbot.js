@@ -24,8 +24,8 @@ class Chatbot extends Component {
             {
               delay: 5000,
               id: '1',
-              //message: `¡Hola, ${user.name}! 😎`,
-              message: 'Hi, there!',
+              message: `¡Hola, ${user.name}! 😎`,
+              //message: 'Hi, there!',
               trigger: '2',
             },
             {
@@ -70,7 +70,7 @@ class Chatbot extends Component {
           floating={true}
           opened={opened}
           toggleFloating={this.toggleFloating}
-          //userAvatar={user.photo}
+          userAvatar={user.photo}
         />
       )}
       </Mycontext.Consumer>

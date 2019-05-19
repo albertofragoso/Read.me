@@ -69,10 +69,12 @@ app.use(passport.session())
 // default value for title local
 app.locals.title = 'Read.me';
 
-const index = require('./routes/index');
+const index = require('./routes/index')
 const auth = require('./routes/auth')
+const api = require('./routes/api')
+app.use('/api', api)
 app.use('/auth', auth)
-app.use('/', index);
+app.use('/', index)
 
 
 module.exports = app;

@@ -1,11 +1,16 @@
 const router = require('express').Router()
 const passport = require('../helpers/passport')
 const User = require('../models/User')
+const Bookshelf = require('../models/Bookshelf')
 const { isLogged } = require('../helpers/middlewares')
 
 router.post('/signup', (req, res, next) => {
   User.register(req.body, req.body.password)
-    .then(user => res.status(201).json(user))
+    .then(user => {
+      Bookshelf.create({ title: `Bookshelf of ${user.name}`, user: user._id })
+        .then(() => res.status(201).json(user))
+        .catch(err => res.json({err: 'Something went wrong'}))
+    })
     .catch(err => res.json({err: 'Something went wrong'}))
 })
 
