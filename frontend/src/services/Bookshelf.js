@@ -10,10 +10,10 @@ class BookshelfService {
     })
   }
 
-  show = user => {
+  shelf = () => {
     return this.service
-      .get(`/api/bookshelf/${user}`)
-      .then(({ data}) => data)
+      .get('/api/bookshelf')
+      .then(({ data }) => data)
       .catch(err => err)
   }
 
@@ -29,7 +29,6 @@ class BookshelfService {
       .post('/api/book/remove', book)
       .then(({ data }) => data)
       .catch(err => err)
-    
   }
 }
 

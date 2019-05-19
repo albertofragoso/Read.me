@@ -15,7 +15,7 @@ class MyProvider extends Component{
       password: '',
       photo: ''
     },
-    user: null
+    user: window.localStorage.getItem('logged')
   }
 
   handleInput = e => {
@@ -38,7 +38,6 @@ class MyProvider extends Component{
     const { form } = this.state
     form.photo = photo.eager[0].url
     this.setState(form)
-    console.log(this.state.form)
   }
 
   handleSignup = e => {
@@ -64,7 +63,7 @@ class MyProvider extends Component{
       .login(this.state.form)
       .then(response => {
         if(response.err) return toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣')
-        //window.localStorage.setItem('logged',JSON.stringify(response.data))
+        window.localStorage.setItem('logged',JSON.stringify(response.data))
         this.setState({ user: response.data })
         toastr.success('¡Genial! Bienvenid@. 🙂')
         //history.push('/profile')
@@ -76,8 +75,8 @@ class MyProvider extends Component{
     service
       .logout()
       .then(response => {
-        //window.localStorage.clear()
-        this.setState({ user: null })
+        window.localStorage.clear()
+        this.setState({ user: window.localStorage.getItem('logged') })
         toastr.info('Regresa pronto. 🙂')
         history.push('/')
       })

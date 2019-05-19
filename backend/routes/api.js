@@ -5,11 +5,11 @@ const Book = require('../models/Book')
 const Bookshelf = require('../models/Bookshelf')
 const { isLogged } = require('../helpers/middlewares')
 
-router.get('/bookshelf/:id', (req, res, next) => {
+router.get('/bookshelf', async (req, res, next) => {
   try {
-    const bookshelf = Bookshelf.findOne({ user: req.params.id })
-    req.status(200).json(bookshelf)
-  } catch { err => releaseEvents.status(500).json({ err: "Something went wrong" })}
+    const bookshelf = await Bookshelf.findOne({ user: req.user._id }).populate('books')
+    res.status(200).json(bookshelf)
+  } catch { err => res.status(500).json({ err: "Something went wrong" })}
 })
 
 router.post('/book/add', async (req, res, next) => {
@@ -17,14 +17,14 @@ router.post('/book/add', async (req, res, next) => {
     // const book = await Book.findOne({ id: req.body.id })
     // if(!book) book = await Book.create({ ...req.body })
     const book = await Book.create({ ...req.body })
-    const bookshelf = await Bookshelf.findOneAndUpdate({ user: req.user._id }, { $push: { book }})
+    const bookshelf = await Bookshelf.findOneAndUpdate({ user: req.user._id }, { $push: { books: book }})
     res.status(200).json(bookshelf)
   } catch { err => res.status(500).json({ err: 'Something went wrong' })}
 })
 
 router.post('/book/remove', async (req, res, next) => {
   try {
-    const bookshelf = await Bookshelf.findOneAndUpdate({ book: req.body.id }, { $pull: { book: req.body.id } }, { new: true })
+    const bookshelf = await Bookshelf.findOneAndUpdate({ user: req.user._id }, { $pull: { books: req.body._id } }, { new: true }).populate('books')
     res.status(200).json(bookshelf)
   } catch { err => res.status(500).json({ err: 'Something went wrong' })}
 })

@@ -20,11 +20,12 @@ class Chatbot extends Component {
       <Mycontext.Consumer>
       {({ user }) => (
         <ChatBot
+          style={{zIndex:9999}}
           steps={[
             {
               delay: 5000,
               id: '1',
-              message: `¡Hola, ${user.name}! 😎`,
+              message: `¡Hola, ${JSON.parse(user).name}! 😎`,
               //message: 'Hi, there!',
               trigger: '2',
             },
@@ -70,7 +71,7 @@ class Chatbot extends Component {
           floating={true}
           opened={opened}
           toggleFloating={this.toggleFloating}
-          userAvatar={user.photo}
+          userAvatar={JSON.parse(user).photo}
         />
       )}
       </Mycontext.Consumer>

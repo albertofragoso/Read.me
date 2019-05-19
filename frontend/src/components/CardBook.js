@@ -1,61 +1,35 @@
 import React, { Component } from 'react'
-import { MDBCarouselItem, MDBCol, MDBCard, MDBCardImage,
-  MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBIcon, toast } from "mdbreact";
+import { MDBCard, MDBView, MDBMask, MDBCardFooter,
+  MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBIcon } from "mdbreact";
 import BookshelfService from '../services/Bookshelf'
-import toastr from 'toastr'
-
-const bookshelfService = new BookshelfService()
 
 class CardBook extends Component {
 
-  state = {
-    bookChoosen: false
-
-  }
-
-  handleAdd = e => {
-    const { bookChoosen } = this.state
-    bookshelfService
-      .add(this.props.booksSearch[e.target.value])
-      .then(response => {
-        toastr.success('Nice! Agregaste un nuevo libro a tu biblioteca. 📕')
-        this.setState({ bookChoosen: !bookChoosen })
-      })
-      .catch(err => toast.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  }
-
-  handleRemove = e => {
-    const { bookChoosen } = this.state
-    bookshelfService
-      .remove(this.props.booksSearch[e.target.value])
-      .then(response => {
-        toastr.warning('¡Listo! Quitaste un libro de tu biblioteca. 📕')
-        this.setState({ bookChoosen: !bookChoosen })
-      })
-      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  }
-
   render() {
-    const { book, i } = this.props
+    const { book, i, handleRemove } = this.props
     return (
-      <MDBCarouselItem itemId={i}>
-        <MDBCol md="12">
-          <MDBCard className="mb-2">
-          <MDBCardImage className="z-depth-1 mx-auto" src={(book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'https://loremflickr.com/320/240/book'
-          } width="128" height="192" />
-            <MDBCardBody>
-              <MDBCardTitle>{book.volumeInfo.title}</MDBCardTitle>
-              <MDBCardText>
-                {book.volumeInfo.subtitle}
-              </MDBCardText>
-              {(!this.state.bookChoosen) ?
-                <MDBBtn style={{borderRadius: "30px"}} active gradient="purple" size="sm" className="white-text" onClick={this.handleAdd} value={i}><MDBIcon icon="plus" /> </MDBBtn> :
-                <MDBBtn style={{borderRadius: "30px"}} active gradient="purple" size="sm" className="white-text" onClick={this.handleRemove} value={i}><MDBIcon icon="minus" /></MDBBtn>
-              }
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBCarouselItem>
+      <MDBCard className="d-flex mb-5">
+        <MDBView>
+          <img src={(book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'https://books.google.com.mx/googlebooks/images/no_cover_thumb.gif'
+          } width="128" height="192" alt="Project" className="img-fluid mx-auto"/>
+          <MDBMask overlay="white-slight"/>
+        </MDBView>
+        <MDBCardBody>
+          <MDBCardTitle className="font-bold mb-3">
+            <strong>{book.volumeInfo.title}</strong>
+            <p>{book.volumeInfo.authors[0]}</p>
+          </MDBCardTitle>
+          <MDBCardText>{
+            (book.volumeInfo.description) ?
+            `${book.volumeInfo.description.split(" ").splice(0,20).join(" ")} ...` : '...'}</MDBCardText>
+        </MDBCardBody>
+        <MDBCardFooter className="links-light profile-card-footer">
+          <span className="right">
+            <MDBBtn style={{borderRadius: "30px"}}gradient="purple" size="sm" className="white-text" onClick={this.props.handleRemove} value={i}>Readme</MDBBtn>
+            <MDBBtn style={{borderRadius: "30px"}} outline color="secondary" size="sm" className="white-text" onClick={handleRemove} value={i}><MDBIcon icon="minus" /></MDBBtn>
+          </span>
+        </MDBCardFooter>
+      </MDBCard>
     )
   }
 }

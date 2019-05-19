@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import BooksService from '../services/Books'
 import { MDBContainer, MDBCarousel, MDBCarouselInner, MDBRow } from "mdbreact";
 import toastr from 'toastr'
-import CardBook from './CardBook';
+import CardCarouselBook from './CardCarouselBook';
 
 const bookService = new BooksService()
-
 class CarouselBooks extends Component{
 
   state = {
@@ -42,7 +41,7 @@ class CarouselBooks extends Component{
               <MDBRow>
                 {
                   booksSearch.map((book, i) => (
-                    <CardBook key={i} book={book} i={i} booksSearch={this.state.booksSearch} />
+                    <CardCarouselBook key={i} book={book} i={i} booksSearch={this.state.booksSearch} />
                   ))
                 }
               </MDBRow>
