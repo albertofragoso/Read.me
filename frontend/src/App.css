@@ -1,3 +1,7 @@
+* {
+  font-family: 'Coming Soon', cursive;
+}
+
 .App {
   text-align: center;
 }
@@ -21,6 +25,26 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.controls-top {
+  display: flex;
+  justify-content: center;
+}
+
+.controls-top a {
+  margin: 5px 10px 10px;
+  padding: 8px 9px;
+  border-radius: 25px; 
+  box-sizing: border-box;
+}
+
+.controls-top a i {
+  color: #6f53aa;
+}
+
+.carousel-indicators li {
+  display: none;
 }
 
 @keyframes App-logo-spin {

@@ -46,18 +46,20 @@ class Navbar extends Component {
                     </div>
                   </MDBNavLink>
                 </MDBNavbarBrand>
-                <MDBNavbarToggler onClick={this.handleTogglerClick} />
                 { user &&
+                <>
+                <MDBNavbarToggler onClick={this.handleTogglerClick} />
                   <MDBCollapse isOpen={this.state.collapsed} navbar>
                   <MDBNavbarNav right>
                     <MDBNavItem active>
-                      <MDBNavLink to="/profile">{JSON.parse(user).name}</MDBNavLink>
+                      <MDBNavLink onClick={this.handleTogglerClick} to="/profile">{JSON.parse(user).name}</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
                       <MDBNavLink to="#" onClick={handleLogout}>Logout</MDBNavLink>
                     </MDBNavItem>
                   </MDBNavbarNav>
                   </MDBCollapse>
+                </>
                 } 
               </MDBContainer>
             </MDBNavbar>

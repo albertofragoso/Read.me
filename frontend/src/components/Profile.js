@@ -51,20 +51,19 @@ class Profile extends Component {
             <MDBRow>
               <MDBCol md="2" sm="12" className="mb-5">
                 <MDBCard>
-                  <img className="mt-5 img-thumbnail z-depth-1 rounded-circle mx-auto" src={JSON.parse(user).photo} alt={JSON.parse(user).name} width="150" />
+                  <img className="mt-5 img-thumbnail z-depth-1 rounded-circle mx-auto" src={JSON.parse(user).photo} alt={JSON.parse(user).name} width="100" />
                   <MDBCardBody>
                       <MDBCardTitle sub className="text-center deep-purple-text mb-2 font-bold">{JSON.parse(user).name}</MDBCardTitle>
                       <MDBCardText className="text-center">
                           {JSON.parse(user).email}
                       </MDBCardText>
-                      <div className="row justify-content-end pr-1">
-                          <MDBBtn size="sm" outline color="purple darken-4" style={{borderRadius: "30px"}}>Editar</MDBBtn>
-                      </div>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
-              <MDBCol md="4" sm="6" className="mb-3">
-                {books.map((book, i) => <CardBook book={book} handleRemove={this.handleRemove} key={i} i={i} />)}
+              <MDBCol md="10" sm="12" className="mb-3">
+                <MDBRow>
+                    {books.map((book, i) => <CardBook book={book} handleRemove={this.handleRemove} key={i} i={i} />)}
+                </MDBRow>
               </MDBCol>
             </MDBRow>
           </MDBContainer>
