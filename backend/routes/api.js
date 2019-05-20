@@ -17,7 +17,7 @@ router.post('/book/add', async (req, res, next) => {
     // const book = await Book.findOne({ id: req.body.id })
     // if(!book) book = await Book.create({ ...req.body })
     const book = await Book.create({ ...req.body })
-    const bookshelf = await Bookshelf.findOneAndUpdate({ user: req.user._id }, { $push: { books: book }})
+    const bookshelf = await Bookshelf.findOneAndUpdate({ user: req.user._id }, { $push: { books: book }}).populate('books')
     res.status(200).json(bookshelf)
   } catch { err => res.status(500).json({ err: 'Something went wrong' })}
 })
