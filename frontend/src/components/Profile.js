@@ -1,47 +1,13 @@
 import React, { Component } from 'react'
-import history from './history'
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardText, MDBCardBody, MDBCardTitle, MDBBtn } from 'mdbreact'
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardText, MDBCardBody, MDBCardTitle } from 'mdbreact'
 import CardBook from './CardBook'
 import { Mycontext } from '../context'
-import BookshelfService from '../services/Bookshelf'
-import toastr from 'toastr'
-
-const bookshelfService = new BookshelfService()
 
 class Profile extends Component {
-
-  // state = {
-  //   books: []
-  // }
-
-  // componentWillMount() {
-  //   const user = localStorage.getItem('logged')
-  //   if(!user) return history.push('/')
-  // }
-  
-  // componentDidMount() {
-  //   bookshelfService
-  //     .shelf()
-  //     .then(response => this.setState({ books: response.books }))
-  //     .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  // }
-
-  // handleRemove = e => {
-  //   const { books } = this.state
-  //   bookshelfService
-  //     .remove(books[e.target.value])
-  //     .then(response => {
-  //       toastr.warning('¡Listo! Quitaste un libro de tu biblioteca. 📕')
-  //       this.setState({ books: response.books })
-  //     })
-  //     .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  // }
 
   render() {
     const user = localStorage.getItem('logged')
     if(!user) return(<></>)
-
-    // const { books } = this.state
 
     return (
     <Mycontext.Consumer>

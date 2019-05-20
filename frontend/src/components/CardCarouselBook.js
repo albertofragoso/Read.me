@@ -1,40 +1,10 @@
 import React, { Component } from 'react'
 import { MDBCarouselItem, MDBCol, MDBCard, MDBCardImage,
-  MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBIcon, toast } from "mdbreact";
-import BookshelfService from '../services/Bookshelf'
-import toastr from 'toastr'
+  MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBIcon } from "mdbreact";
 import { Mycontext } from '../context'
 
-const bookshelfService = new BookshelfService()
-
 class CardCarouselBook extends Component {
-
-  // state = {
-  //   isChoosen: false
-  // }
-
-  // handleAdd = e => {
-  //   const { isChoosen } = this.state
-  //   bookshelfService
-  //     .add(this.props.booksSearch[e.target.value])
-  //     .then(response => {
-  //       toastr.success('Nice! Agregaste un nuevo libro a tu biblioteca. 📕')
-  //       this.setState({ isChoosen: !isChoosen })
-  //     })
-  //     .catch(err => toast.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  // }
-
-  // handleRemove = e => {
-  //   const { isChoosen } = this.state
-  //   bookshelfService
-  //     .remove(this.props.booksSearch[e.target.value])
-  //     .then(response => {
-  //       toastr.warning('¡Listo! Quitaste un libro de tu biblioteca. 📕')
-  //       this.setState({ isChoosen: !isChoosen })
-  //     })
-  //     .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  // }
-
+  
   render() {
     const { book, i, booksSearch } = this.props
     return (

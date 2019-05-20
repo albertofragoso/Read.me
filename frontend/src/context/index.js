@@ -100,8 +100,8 @@ class MyProvider extends Component{
     bookshelfService
       .add(booksSearch[e.target.value])
       .then(response => {
+        this.setState({ isChoosen: !isChoosen, books: response.books })
         toastr.success('Nice! Agregaste un nuevo libro a tu biblioteca. 📕')
-        this.setState({ books: response.books })
       })
       .catch(err => toast.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
