@@ -2,10 +2,13 @@ import React, { createContext, Component} from 'react'
 import AuthService from '../services/Auth'
 import toastr from 'toastr'
 import history from '../components/history'
+import BookshelfService from '../services/Bookshelf';
+import toast from 'toastr'
 
 export const Mycontext = createContext()
 
 const service = new AuthService()
+const bookshelfService = new BookshelfService()
 
 class MyProvider extends Component{
   state = {
@@ -15,7 +18,16 @@ class MyProvider extends Component{
       password: '',
       photo: ''
     },
-    user: window.localStorage.getItem('logged')
+    user: window.localStorage.getItem('logged'),
+    books: [],
+    isChoosen: false
+  }
+
+  componentDidMount() {
+    bookshelfService
+      .shelf()
+      .then(response => this.setState({ books: response.books }))
+      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
   handleInput = e => {
@@ -83,16 +95,54 @@ class MyProvider extends Component{
       .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
+  handleAdd = (e, booksSearch) => {
+    const { isChoosen } = this.state
+    bookshelfService
+      .add(booksSearch[e.target.value])
+      .then(response => {
+        toastr.success('Nice! Agregaste un nuevo libro a tu biblioteca. 📕')
+        this.setState({ books: response.books })
+      })
+      .catch(err => toast.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
+  }
+
+  handleRemoveCarousel = (e, booksSearch) => {
+    const { isChoosen } = this.state
+    bookshelfService
+      .remove(booksSearch[e.target.value])
+      .then(response => {
+        toastr.warning('¡Listo! Quitaste un libro de tu biblioteca. 📕')
+        this.setState({ isChoosen: !isChoosen, books: response.books })
+      })
+      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
+  }
+
+  handleRemoveProfile = e => {
+    const { books } = this.state
+    bookshelfService
+      .remove(books[e.target.value])
+      .then(response => {
+        toastr.warning('¡Listo! Quitaste un libro de tu biblioteca. 📕')
+        this.setState({ books: response.books })
+      })
+      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
+  }
+
   render() {
     return(
       <Mycontext.Provider value={{
         user: this.state.user,
+        books: this.state.books,
+        isChoosen: this.isChoosen,
         form: this.state.form,
         handleInput: this.handleInput,
         handleImage: this.handleImage,
         handleSignup: this.handleSignup,
         handleLogin: this.handleLogin,
-        handleLogout: this.handleLogout
+        handleLogout: this.handleLogout,
+        handleAdd: this.handleAdd,
+        handleRemoveCarousel: this.handleRemoveCarousel,
+        handleRemoveProfile: this.handleRemoveProfile
       }}>
         {this.props.children}
       </Mycontext.Provider>

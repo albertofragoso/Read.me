@@ -10,43 +10,43 @@ const bookshelfService = new BookshelfService()
 
 class Profile extends Component {
 
-  state = {
-    books: []
-  }
+  // state = {
+  //   books: []
+  // }
 
-  componentWillMount() {
-    const user = localStorage.getItem('logged')
-    if(!user) return history.push('/')
-  }
+  // componentWillMount() {
+  //   const user = localStorage.getItem('logged')
+  //   if(!user) return history.push('/')
+  // }
   
-  componentDidMount() {
-    bookshelfService
-      .shelf()
-      .then(response => this.setState({ books: response.books }))
-      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  }
+  // componentDidMount() {
+  //   bookshelfService
+  //     .shelf()
+  //     .then(response => this.setState({ books: response.books }))
+  //     .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
+  // }
 
-  handleRemove = e => {
-    const { books } = this.state
-    bookshelfService
-      .remove(books[e.target.value])
-      .then(response => {
-        toastr.warning('¡Listo! Quitaste un libro de tu biblioteca. 📕')
-        this.setState({ books: response.books })
-      })
-      .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
-  }
+  // handleRemove = e => {
+  //   const { books } = this.state
+  //   bookshelfService
+  //     .remove(books[e.target.value])
+  //     .then(response => {
+  //       toastr.warning('¡Listo! Quitaste un libro de tu biblioteca. 📕')
+  //       this.setState({ books: response.books })
+  //     })
+  //     .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
+  // }
 
   render() {
     const user = localStorage.getItem('logged')
     if(!user) return(<></>)
 
-    const { books } = this.state
+    // const { books } = this.state
 
     return (
     <Mycontext.Consumer>
       {
-        ({ form }) => (
+        ({ books }) => (
           <MDBContainer className="mt-5">
             <MDBRow>
               <MDBCol md="2" sm="12" className="mb-5">
@@ -62,7 +62,7 @@ class Profile extends Component {
               </MDBCol>
               <MDBCol md="10" sm="12" className="mb-3">
                 <MDBRow>
-                    {books.map((book, i) => <CardBook book={book} handleRemove={this.handleRemove} key={i} i={i} />)}
+                    {books.map((book, i) => <CardBook book={book} key={i} i={i} />)}
                 </MDBRow>
               </MDBCol>
             </MDBRow>
