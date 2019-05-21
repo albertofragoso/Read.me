@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { MDBCard, MDBCol, MDBView, MDBMask, MDBCardFooter,
   MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBIcon } from "mdbreact";
-import ModalBook from './ModalBook'
 import { Mycontext } from '../context'
+import { Link } from 'react-router-dom'
 
 class CardBook extends Component {
 
@@ -29,8 +29,10 @@ class CardBook extends Component {
               </MDBCardBody>
               <MDBCardFooter className="links-light profile-card-footer">
                 <span className="right">
-                  <ModalBook title={book.volumeInfo.title} id={book.id} />
                   <MDBBtn style={{borderRadius: "30px"}} outline color="secondary" size="sm" className="white-text" onClick={handleRemoveProfile} value={i}><MDBIcon icon="minus" /></MDBBtn>
+                  <Link to={`/books/${book.id}`}>
+                    <MDBBtn style={{borderRadius: "30px"}}gradient="purple" size="sm" className="white-text" >ReadMe</MDBBtn>
+                  </Link>
                 </span>
               </MDBCardFooter>
             </MDBCard>

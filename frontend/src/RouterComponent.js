@@ -2,6 +2,7 @@ import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import history from './components/history'
 import Home from './components/Home'
+import Book from './components/Book'
 import Navbar from './components/Navbar'
 import Profile from './components/Profile'
 import Footer from './components/Footer'
@@ -16,10 +17,10 @@ const RouterComponent = () => {
           <div>
             <Navbar />
             <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/' component={ Home } />
+              <Route exact path='/profile' component={ Profile } />
               <Route exact path='/books' component={() => <p>Books</p>} />
-              <Route exact path='/books/:id' component={() => <p>Book</p>} />
+              <Route exact path='/books/:id' component={ Book } />
               <Route component={() => <p>404</p>} />
             </Switch>
             {user && <Chatbot />}

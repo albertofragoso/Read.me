@@ -23,8 +23,6 @@ class BooksService {
       .then(({ data }) => data)
       .catch(err => err)
   }
-
-  
   
 }
 

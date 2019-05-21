@@ -41,7 +41,7 @@ class Navbar extends Component {
                 <MDBNavbarBrand>
                   <MDBNavLink to="/">
                     <div className="d-flex justify-content-center align-items-center">
-                      <img src="rocket.png" alt="readme" width="40"/> 
+                      <img src="/rocket.png" alt="readme" width="40"/> 
                       <h4 style={{paddingTop:'20px'}} className="ml-2 white-text font-weight-bold" > READ.ME </h4>
                     </div>
                   </MDBNavLink>
@@ -52,7 +52,7 @@ class Navbar extends Component {
                   <MDBCollapse isOpen={this.state.collapsed} navbar>
                   <MDBNavbarNav right>
                     <MDBNavItem active>
-                      <MDBNavLink onClick={this.handleTogglerClick} to="/profile">{JSON.parse(user).name}</MDBNavLink>
+                      <MDBNavLink onClick={this.handleTogglerClick} to="/profile">{user.name}</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
                       <MDBNavLink to="#" onClick={handleLogout}>Logout</MDBNavLink>

@@ -25,7 +25,7 @@ class Chatbot extends Component {
             {
               delay: 5000,
               id: '1',
-              message: `¡Hola, ${JSON.parse(user).name}! 😎`,
+              message: `¡Hola, ${user.name}! 😎`,
               //message: 'Hi, there!',
               trigger: '2',
             },
@@ -71,7 +71,7 @@ class Chatbot extends Component {
           floating={true}
           opened={opened}
           toggleFloating={this.toggleFloating}
-          userAvatar={JSON.parse(user).photo}
+          userAvatar={user.photo}
         />
       )}
       </Mycontext.Consumer>

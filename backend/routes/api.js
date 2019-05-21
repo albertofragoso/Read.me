@@ -29,4 +29,13 @@ router.post('/book/remove', async (req, res, next) => {
   } catch { err => res.status(500).json({ err: 'Something went wrong' })}
 })
 
+router.get('/book/:id', async(req, res, next) => {
+  const { id } = req.params
+  try {
+    const book = await Book.findOne({ id })
+    res.status(200).json(book)
+  } catch { err => res.status(500).json({ err: 'Something went wrong'})}
+
+})
+
 module.exports = router

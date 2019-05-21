@@ -30,6 +30,13 @@ class BookshelfService {
       .then(({ data }) => data)
       .catch(err => err)
   }
+
+  byId = book => {
+    return this.service
+      .get(`/api/book/${book}`)
+      .then(({ data }) => data)
+      .catch(err => err)
+  }
 }
 
 export default BookshelfService

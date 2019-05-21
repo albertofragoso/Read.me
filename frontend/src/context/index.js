@@ -18,7 +18,7 @@ class MyProvider extends Component{
       password: '',
       photo: ''
     },
-    user: window.localStorage.getItem('logged'),
+    user: JSON.parse(window.localStorage.getItem('logged')),
     books: [],
     isChoosen: false
   }

@@ -8,12 +8,27 @@ const Home = () => {
   //const user = localStorage.getItem('logged')
 
   return (
+  <div id="videobackground">
     <Mycontext.Consumer>
     {({ user }) => (
-      <> 
-        <MDBView src={`https://images.unsplash.com/photo-1522008342704-6b265b543c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80`} fixed>
-          <MDBMask className="rgba-white-light d-flex justify-content-center align-items-center">
-            <MDBContainer>
+      <>
+        {/* https://res.cloudinary.com/dqqtlpdt0/video/upload/v1558381831/ironprofile/readme_nfjx0w.mp4  <MDBView src={`https://images.unsplash.com/photo-1522008342704-6b265b543c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80`} fixed>
+          <MDBMask className="rgba-white-light d-flex justify-content-center align-items-center"> */}
+        <MDBView>
+          <video
+            className="video-intro"
+            playsInline
+            autoPlay
+            muted=""
+            loop
+          >
+            <source
+              src="https://res.cloudinary.com/dqqtlpdt0/video/upload/v1558381831/ironprofile/readme_nfjx0w.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <MDBMask className="d-flex justify-content-center align-items-center gradient">
+            <MDBContainer className="px-md-3 px-sm-3">
 
               <MDBRow>
                 <MDBCol md="12" className="mb-4 white-text text-center">
@@ -21,8 +36,8 @@ const Home = () => {
                     <h1 className="display-3 mb-0 mr-3 pt-md-5 pt-5 white-text font-weight-bold" >READ.<span className="secondary-color-dark-text font-weight-bold">ME </span> </h1>
                     <img style={{paddingTop: '20px'}} src="rocket.png" alt="readme" width="90"/> 
                   </div>
-                  <hr className="hr-light my-4" />
-                  <h5 className="pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 white-text font-weight-bold">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti consequuntur nihil.</h5>
+                  {/* <hr className="hr-light my-4" />
+                  <h5 className="pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 white-text font-weight-bold">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti consequuntur nihil.</h5>  */}
                   {!user && <><ModalSignup /> <ModalLogin /></> }
                 </MDBCol>
               </MDBRow>
@@ -68,6 +83,7 @@ const Home = () => {
       </>
     )}
     </Mycontext.Consumer>
+  </div>
   )
 } 
 
