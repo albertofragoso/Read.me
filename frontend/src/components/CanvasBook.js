@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { GoogleAPiWrapper } from 'google-maps-react'
-
 export class CanvasBook extends Component {
-
   componentDidMount() {
     window.google.books.load({"language": "es"})
 
@@ -12,7 +9,7 @@ export class CanvasBook extends Component {
     }
 
     const bookNotFound = () => {
-      document.getElementById('canvas-book').innerHTML="<h1>No Preview! :(</h1>";
+      document.getElementById('canvas-book').innerHTML="<h1>No Preview! 😣</h1>";
     }       
 
     window.google.books.setOnLoadCallback(initialize)
@@ -21,10 +18,10 @@ export class CanvasBook extends Component {
   render() {
     return (
       <>
-       <div className="mx-auto mt-5" id="canvas-book" style={{width: "500px", height: '800px'}}></div> 
-      </>
-    )
-  }
+        <div className="mx-auto mt-5" id="canvas-book" style={{width: "500px", height: '800px'}}></div> 
+       </>
+      )
+    }
 }
-
+     
 export default CanvasBook

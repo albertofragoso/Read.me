@@ -5,15 +5,12 @@ import ModalLogin from "./ModalLogin";
 import { Mycontext } from '../context'
 
 const Home = () => {
-  //const user = localStorage.getItem('logged')
 
   return (
   <div id="videobackground">
     <Mycontext.Consumer>
     {({ user }) => (
       <>
-        {/* https://res.cloudinary.com/dqqtlpdt0/video/upload/v1558381831/ironprofile/readme_nfjx0w.mp4  <MDBView src={`https://images.unsplash.com/photo-1522008342704-6b265b543c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80`} fixed>
-          <MDBMask className="rgba-white-light d-flex justify-content-center align-items-center"> */}
         <MDBView>
           <video
             className="video-intro"

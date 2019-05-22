@@ -78,7 +78,6 @@ class MyProvider extends Component{
         window.localStorage.setItem('logged',JSON.stringify(response.data))
         this.setState({ user: response.data })
         toastr.success('¡Genial! Bienvenid@. 🙂')
-        //history.push('/profile')
       })
       .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }

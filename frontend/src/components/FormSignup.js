@@ -27,7 +27,7 @@ const FormSignup = () => (
                     onChange={handleInput}
                   />
                   <br />
-                  {form.photo && <img className="img-fluid z-depth-1 rounded-circle mx-auto d-block" src={form.photo}  alt={form.name} width='100'/>}
+                  {form.photo ? <img className="img-fluid z-depth-1 rounded-circle mx-auto d-block" src={form.photo}  alt={form.name} width='100'/> : <>
                   <label
                     htmlFor="defaultFormCardNameEx"
                     className="grey-text font-weight-light"
@@ -47,7 +47,8 @@ const FormSignup = () => (
                       <label className="custom-file-label" htmlFor="inputGroupFile01">
                       </label>
                     </div>
-                  </div>
+                  </div></>
+                  }
                   <br />
                   <label
                     htmlFor="defaultFormCardEmailEx"

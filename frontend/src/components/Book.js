@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardText, MDBCardBody, MDBCardTitle, MDBBtn, MDBIcon } from 'mdbreact'
-import CanvasBook from './CanvasBook'
 import  BookshelfService  from '../services/Bookshelf'
 import toastr from 'toastr'
 import { Link } from 'react-router-dom'
@@ -47,8 +46,10 @@ class Profile extends Component {
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          <MDBCol md="9" sm="12" className="mb-3">
-            <CanvasBook id={id} />
+          <MDBCol md="9" sm="12" className="mb-5">
+            <div className="embed-responsive embed-responsive-16by9 mb-5">
+              <iframe frameBorder="0" scrolling="no" title="canvasbook" className="embed-responsive-item mt-5" src={`http://127.0.0.1:3000/book?book=${id}`} allowfullscreen></iframe>
+            </div>
           </MDBCol>
         </MDBRow>
       </MDBContainer>

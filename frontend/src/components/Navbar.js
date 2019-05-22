@@ -14,8 +14,6 @@ class Navbar extends Component {
   };
 
   render() {
-    //const user = localStorage.getItem('logged')
-
     const overlay = (
       <div
         id="sidenav-overlay"
