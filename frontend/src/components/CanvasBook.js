@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
+import { GoogleAPiWrapper } from 'google-maps-react'
 
-class CanvasBook extends Component {
+export class CanvasBook extends Component {
 
   componentDidMount() {
-    // window.google.books.load({"language": "es"})
-    // const initialize = () => {
-    //   var viewer = new window.google.books.DefaultViewer(document.getElementById('canvas-book'))
-    //   viewer.load(this.props.id)
-    // }
-    // window.google.books.setOnLoadCallback(initialize)
+    window.google.books.load({"language": "es"})
+
+    const initialize = () => {
+      var viewer = new window.google.books.DefaultViewer(document.getElementById('canvas-book'))
+      viewer.load(this.props.id, bookNotFound)
+    }
+
+    const bookNotFound = () => {
+      document.getElementById('canvas-book').innerHTML="<h1>No Preview! :(</h1>";
+    }       
+
+    window.google.books.setOnLoadCallback(initialize)
   }
 
   render() {

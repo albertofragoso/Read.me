@@ -21,16 +21,6 @@ class Profile extends Component {
       .catch(err => toastr.error('Bu. Algo salió mal. 😣'))
   }
 
-  componentWillMount() {
-    const { id } = this.props.match.params
-    window.google.books.load({"language": "es"})
-    const initialize = () => {
-      var viewer = new window.google.books.DefaultViewer(document.getElementById('canvas-book'))
-      viewer.load(id)
-    }
-    window.google.books.setOnLoadCallback(initialize)
-  }
-
   render() {
     const { book } = this.state
     const { id } = this.props.match.params

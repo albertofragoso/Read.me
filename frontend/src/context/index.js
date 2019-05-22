@@ -88,7 +88,7 @@ class MyProvider extends Component{
       .logout()
       .then(response => {
         window.localStorage.clear()
-        this.setState({ user: window.localStorage.getItem('logged') })
+        this.setState({ user: window.localStorage.getItem('logged'), books: [] })
         toastr.info('Regresa pronto. 🙂')
         history.push('/')
       })
