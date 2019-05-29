@@ -20,13 +20,14 @@ class MyProvider extends Component{
     },
     user: JSON.parse(window.localStorage.getItem('logged')),
     books: [],
+    temp: [],
     isChoosen: false
   }
 
   componentDidMount() {
     bookshelfService
       .shelf()
-      .then(response => this.setState({ books: response.books }))
+      .then(response => this.setState({ books: response.books, temp: response.books }))
       .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
@@ -127,6 +128,12 @@ class MyProvider extends Component{
       .catch(err => toastr.error('Bu. Algo salió mal. Intentalo de nuevo. 😣'))
   }
 
+  handleSearch = e => {
+    const { temp } = this.state
+    const filterBooks = temp.filter(book => book.volumeInfo.title.toLowerCase().includes(e.target.value.toLowerCase())) 
+    this.setState({ books: filterBooks })
+  }
+
   render() {
     return(
       <Mycontext.Provider value={{
@@ -141,7 +148,8 @@ class MyProvider extends Component{
         handleLogout: this.handleLogout,
         handleAdd: this.handleAdd,
         handleRemoveCarousel: this.handleRemoveCarousel,
-        handleRemoveProfile: this.handleRemoveProfile
+        handleRemoveProfile: this.handleRemoveProfile,
+        handleSearch: this.handleSearch
       }}>
         {this.props.children}
       </Mycontext.Provider>
