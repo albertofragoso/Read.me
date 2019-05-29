@@ -12,7 +12,7 @@ class Profile extends Component {
     return (
     <Mycontext.Consumer>
       {
-        ({ books }) => (
+        ({ books, handleSearch }) => (
           <MDBContainer className="mt-5">
             <MDBRow>
               <MDBCol md="2" sm="12" className="mb-5">
@@ -25,6 +25,9 @@ class Profile extends Component {
                       </MDBCardText>
                   </MDBCardBody>
                 </MDBCard>
+                <div className="md-form deep-purple-2 mb-3">
+                  <input className="form-control" type="text" placeholder="🔎 Buscar..." aria-label="Buscar..." onChange={ handleSearch }/>
+                </div>
               </MDBCol>
               <MDBCol md="10" sm="12" className="mb-3">
                 <MDBRow>
