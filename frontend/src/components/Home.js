@@ -31,7 +31,7 @@ const Home = () => {
                 <MDBCol md="12" className="white-text text-center mb-5">
                   <div className="d-flex justify-content-center align-items-center">
                     <h1 className="display-3 mb-0 mr-3 pt-md-5 pt-5 white-text font-weight-bold" >READ.<span className="secondary-color-dark-text font-weight-bold">ME </span> </h1>
-                    <img style={{paddingTop: '20px'}} src="rocket.png" alt="readme" width="90"/> 
+                    <img className="img-fluid img-movile" style={{paddingTop: '20px'}} src="rocket.png" alt="readme" width="90"/> 
                   </div>
                   {!user && <><ModalSignup /> <ModalLogin /></> }
                 </MDBCol>
