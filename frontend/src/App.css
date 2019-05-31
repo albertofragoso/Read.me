@@ -65,6 +65,10 @@
     height: 100vh!important; 
     width: inherit !important;
   }
+
+  .img-movile {
+    display: none!important;
+  }
 }
 
 @keyframes App-logo-spin {
