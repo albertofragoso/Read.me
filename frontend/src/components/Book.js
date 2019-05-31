@@ -47,8 +47,8 @@ class Profile extends Component {
             </MDBCard>
           </MDBCol>
           <MDBCol md="9" sm="12" className="mb-5">
-            <div className="embed-responsive embed-responsive-16by9 mb-5">
-              <iframe frameBorder="0" scrolling="no" title="canvasbook" className="embed-responsive-item mt-5" src={`http://127.0.0.1:3000/book?book=${id}`} allowfullscreen></iframe>
+            <div className="embed-responsive embed-responsive-16by9 mb-5" style={{ height: '750px' }}>
+              <iframe frameBorder="0" scrolling="no" title="canvasbook" className="embed-responsive-item mt-5" src={`https://stormy-meadow-56970.herokuapp.com/book.html?book=${id}`} allowfullscreen></iframe>
             </div>
           </MDBCol>
         </MDBRow>
